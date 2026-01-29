@@ -169,6 +169,12 @@ UPLOADS_DIR=./uploads
 # ================================
 CONTACT_EMAIL=support@eduplatform.com
 
+# ================================
+# Resend
+# ================================
+RESEND_API_KEY=re_xxxxxxxx
+
+
 ```
 
 Create `.env` files in **client** and **admin** directories:

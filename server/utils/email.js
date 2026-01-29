@@ -1,37 +1,29 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: process.env.SMTP_PORT || 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-    },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendEmail = async ({ to, subject, html }) => {
-    try {
-        const info = await transporter.sendMail({
-            from: `"${process.env.APP_NAME}" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
-            to,
-            subject,
-            html,
-        });
-        console.log("📨 Email sent: %s", info.messageId);
-        return info;
-    } catch (error) {
-        console.error("❌ Error sending email:", error);
-        throw error;
-    }
+  try {
+    const data = await resend.emails.send({
+      from: `${process.env.APP_NAME || 'EduPlatform'} <onboarding@resend.dev>`,
+      to,
+      subject,
+      html,
+    });
+    console.log("📨 Email sent successfully:", data);
+    return data;
+  } catch (error) {
+    console.error("❌ Error sending email:", error);
+    throw error;
+  }
 };
 
 export const sendVerificationEmail = async (email, code) => {
-    const subject = "Your Verification Code";
-    const html = `
+  const subject = "Your Verification Code";
+  const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #4F46E5;">Verify Your Email</h2>
       <p>Hello,</p>
@@ -43,12 +35,12 @@ export const sendVerificationEmail = async (email, code) => {
       <p>If you didn't request this code, please ignore this email.</p>
     </div>
   `;
-    return sendEmail({ to: email, subject, html });
+  return sendEmail({ to: email, subject, html });
 };
 
 export const sendPasswordResetEmail = async (email, code) => {
-    const subject = "Reset Your Password";
-    const html = `
+  const subject = "Reset Your Password";
+  const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #E11D48;">Reset Password Request</h2>
       <p>Hello,</p>
@@ -61,5 +53,5 @@ export const sendPasswordResetEmail = async (email, code) => {
       <p>If you didn't request a password reset, you can safely ignore this email.</p>
     </div>
   `;
-    return sendEmail({ to: email, subject, html });
+  return sendEmail({ to: email, subject, html });
 };
