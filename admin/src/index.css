@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+html {
+    font-size: 80%;
+    /* Reduces global UI size to ~14px base */
+}
