@@ -12,10 +12,6 @@ A full-featured, robust Learning Management System (LMS) built with the MERN sta
 *   **Client**: [https://eduplatform-client.vercel.app](https://eduplatform-client.vercel.app)
 *   **Admin**: [https://eduplatform-admin.vercel.app](https://eduplatform-admin.vercel.app)
 
-**Demo Credentials:**
-*   **Student**: `student@test.com` / `123456`
-*   **Instructor**: `instructor@test.com` / `123456`
-*   **Admin**: `admin@test.com` / `123456`
 
 ## ✨ Features
 
@@ -59,9 +55,6 @@ A full-featured, robust Learning Management System (LMS) built with the MERN sta
 *   **HTTP Parameter Pollution Protection**: Prevents parameter pollution attacks.
 *   **Secure Headers**: Implemented via Helmet and CORS policies.
 
-## 📸 Screenshots
-
-*(Add screenshots of Student Dashboard, Instructor Studio, Admin Analytics, and Course Player here)*
 
 ## 🛠️ Tech Stack
 
@@ -116,29 +109,66 @@ A full-featured, robust Learning Management System (LMS) built with the MERN sta
 Create a `.env` file in the **server** directory:
 
 ```env
+# ================================
 # Server Configuration
+# ================================
 PORT=5001
 NODE_ENV=development
-FRONTEND_URL=http://localhost:5173
-ADMIN_URL=http://localhost:5175
 
+# ================================
 # Database
-MONGO_URI=mongodb://127.0.0.1:27017/lms-studio
+# ================================
+MONGO_URI=mongodb://127.0.0.1:27017/eduplatform
 
-# Authentication
-JWT_SECRET=your_super_secret_jwt_key
-JWT_EXPIRES_IN=30d
-
-# Cloudinary
+# ================================
+# Cloudinary (Media Storage)
+# ================================
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 
-# Email
-EMAIL_SERVICE=gmail
-EMAIL_USERNAME=your_email@gmail.com
-EMAIL_PASSWORD=your_app_password
-EMAIL_FROM=noreply@eduplatform.com
+# ================================
+# Security (JWT)
+# ================================
+JWT_SECRET=your_access_token_secret
+JWT_REFRESH_SECRET=your_refresh_token_secret
+ACCESS_TOKEN_EXPIRY=15m
+REFRESH_TOKEN_EXPIRY=7d
+
+# ================================
+# Frontend URLs
+# ================================
+FRONTEND_URL=http://localhost:5173
+ADMIN_URL=http://localhost:5175
+
+# ================================
+# Email (Optional)
+# ================================
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+SMTP_FROM=noreply@eduplatform.com
+
+# ================================
+# App Info
+# ================================
+APP_NAME=EduPlatform
+APP_VERSION=1.0.0
+
+# ================================
+# File Upload Settings
+# ================================
+USE_CLOUDINARY=true
+MAX_FILE_SIZE=100MB
+ALLOW_LOCAL_UPLOADS=true
+UPLOADS_DIR=./uploads
+
+# ================================
+# Contact
+# ================================
+CONTACT_EMAIL=support@eduplatform.com
+
 ```
 
 Create `.env` files in **client** and **admin** directories:
