@@ -12,6 +12,11 @@ A full-featured, robust Learning Management System (LMS) built with the MERN sta
 *   **Client**: [https://eduplatform-client.vercel.app](https://eduplatform-client.vercel.app)
 *   **Admin**: [https://eduplatform-admin.vercel.app](https://eduplatform-admin.vercel.app)
 
+**Demo Credentials:** 
+* **Student**: student@test.com / 123456 
+* **Instructor**: instructor@test.com / 123456 
+* **Admin**: admin@test.com / 123456
+
 
 ## ✨ Features
 

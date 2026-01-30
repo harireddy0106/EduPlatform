@@ -292,6 +292,7 @@ router.post("/send-verification", async (req, res) => {
     await sendVerificationEmail(email, code);
 
     console.log(`✅ Verification email sent to: ${email}`);
+    console.log(`🔐 Verification Code for ${email}: ${code}`); // Log code for dev debugging
     res.json({ message: "Verification email sent successfully" });
   } catch (error) {
     console.error("❌ Send verification error:", error);
@@ -359,6 +360,7 @@ router.post("/forgot-password", async (req, res) => {
     await sendPasswordResetEmail(email, code);
 
     console.log(`✅ Password reset email sent to: ${email}`);
+    console.log(`🔐 detailed Reset Code for ${email}: ${code}`); // Log code for dev debugging
     res.json({ message: "Password reset instructions sent to your email" });
   } catch (error) {
     console.error("❌ Forgot password error:", error);
